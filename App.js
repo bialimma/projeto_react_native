@@ -7,23 +7,25 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import Login from './telas/Login';
 import Inicial from './telas/Inicial';
 import BottomTabsTela1 from './navegacao/BottomTabsTela1'
-
+import {AuthProvider} from './context/auth/AuthProvider'
 export default function App() {
 
   const Stack = createNativeStackNavigator();
 
   return (
-    <SafeAreaProvider>
-      <NavigationContainer>
-        <Stack.Navigator
-          initialRouteName="Login"
-          screenOptions={{ headerShown: false }}
-        >
-          <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="BottomTabsTela1" component={BottomTabsTela1} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </SafeAreaProvider>
+    <AuthProvider>
+      <SafeAreaProvider>
+        <NavigationContainer>
+          <Stack.Navigator
+            initialRouteName="Login"
+            screenOptions={{ headerShown: false }}
+          >
+            <Stack.Screen name="Login" component={Login} />
+            <Stack.Screen name="BottomTabsTela1" component={BottomTabsTela1} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </SafeAreaProvider>
+    </AuthProvider>
   );
 }
 
