@@ -6,8 +6,9 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import Login from './telas/Login';
 import Inicial from './telas/Inicial';
-import BottomTabsTela1 from './navegacao/BottomTabsTela1'
-import {AuthProvider} from './context/auth/AuthProvider'
+import BottomTabsTela1 from './navegacao/BottomTabsTela1';
+import {AuthProvider} from './context/auth/AuthProvider';
+
 export default function App() {
 
   const Stack = createNativeStackNavigator();

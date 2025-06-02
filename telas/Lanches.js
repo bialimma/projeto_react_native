@@ -10,7 +10,7 @@ import {collection, getDocs, setDoc, doc} from 'firebase/firestore';
 import { db } from '../FirebaseConfig';
 
 
-export default function Sobre({navigation}) {
+export default function Lanches({navigation}) {
   const [data,setData] = useState([]);
   
   useEffect(()=>{

@@ -1,27 +1,29 @@
 
 import { StyleSheet, Text, View, TextInput,Button} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Inicial from '../telas/Inicial';
-import Sobre from '../telas/Sobre';
+import Lanches from '../telas/Lanches';
+import Combos from '../telas/Combos';
 import Pedidos from '../telas/Pedidos';
+import DrawerTela1 from './DrawerTela1';
 
 export default function BottomTabsTela1() {
-  const Tab = createMaterialTopTabNavigator();
+  const Tab = createBottomTabNavigator();
 
   return (
-    <Tab.Navigator>
+    <Tab.Navigator screenOptions={{ headerShown: false }}>
       <Tab.Screen
-        name="Inicial"
-        component={Inicial}
+        name="DrawerTela1"
+        component={DrawerTela1}
       />
      <Tab.Screen
-        name="Sobre"
-        component={Sobre}
+        name="Lanches"
+        component={Lanches}
       />
       <Tab.Screen
-        name="Pedidos"
-        component={Pedidos}
+        name="Combos"
+        component={Combos}
       />
     </Tab.Navigator>
   );
