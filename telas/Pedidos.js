@@ -70,50 +70,49 @@ export default function Pedidos({ navigation }) {
 
   return (
     <SafeAreaView style={{ backgroundColor: 'green', flex: 1 }}>
-      <ScrollView>
-        <Button title="Novo Pedido" onPress={()=> setModalVisible(true)}/>
-        <Modal visible={modalVisible} animationType="slide">
-          <View>
-            <Text>Novo Pedido</Text>
-            <TextInput
-              placeholder="Endereço"
-              value={endereco}
-              onChangeText={setEndereco}
+    <Button title="Novo Pedido" onPress={()=> setModalVisible(true)}/>
+     <Modal visible={modalVisible} animationType="slide"> 
+        <ScrollView>
+            <View>
+              <Text>Novo Pedido</Text>
+              <TextInput
+                placeholder="Endereço"
+                value={endereco}
+                onChangeText={setEndereco}
+              />
+              
+              <Text>Itens do Cardápio:</Text>
+                <FlatList
+                  data={itensCardapio}
+                  keyExtractor={(item) => item.id}
+                  renderItem={({ item }) => (
+                    <TouchableOpacity onPress={() => adicionarItemAoPedido(item)}>
+                      <Text>{item.titulo}</Text>
+                      <Image source={{ uri: item.imagem }} style={{ width: 50, height: 50 }}/>
+                      <Text>R$ {item.preco}</Text>
+                    </TouchableOpacity>
+                  )}
+                  numColumns={4}
+                  columnWrapperStyle={{ justifyContent: 'space-around' }}
+                />
 
-            />
-            
-            <Text>Itens do Cardápio:</Text>
+              <Text>Itens Selecionados:</Text>
               <FlatList
-                data={itensCardapio}
-                keyExtractor={(item) => item.id}
-                renderItem={({ item }) => (
-                  <TouchableOpacity onPress={() => adicionarItemAoPedido(item)}>
-                    <Text>{item.titulo}</Text>
-                    <Image source={{ uri: item.imagem }} style={{ width: 50, height: 50 }}/>
-                    <Text>R$ {item.preco}</Text>
-                  </TouchableOpacity>
+                data={itensPedido}
+                keyExtractor={(_, index) => index.toString()}
+                renderItem={({ item, index }) => (
+                  <View>
+                    <Text>{item.nome} - R$ {item.preco}</Text>
+                    <Button title="Remover" color="red" onPress={() => removerItem(index)} />
+                  </View>
                 )}
-                numColumns={4}
-                columnWrapperStyle={{ justifyContent: 'space-around' }}
               />
 
-            <Text>Itens Selecionados:</Text>
-            <FlatList
-              data={itensPedido}
-              keyExtractor={(_, index) => index.toString()}
-              renderItem={({ item, index }) => (
-                <View>
-                  <Text>{item.nome} - R$ {item.preco}</Text>
-                  <Button title="Remover" color="red" onPress={() => removerItem(index)} />
-                </View>
-              )}
-            />
-
-            <Button title="Salvar Pedido" onPress={adicionarPedido} />
-            <Button title="Cancelar" color="gray" onPress={() => setModalVisible(false)} />
-          </View>
-        </Modal>
-      </ScrollView>
+              <Button title="Salvar Pedido" onPress={adicionarPedido} />
+              <Button title="Cancelar" color="gray" onPress={() => setModalVisible(false)} />
+            </View>
+        </ScrollView>
+      </Modal>
     </SafeAreaView>
   );
 }

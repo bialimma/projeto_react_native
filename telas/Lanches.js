@@ -8,6 +8,7 @@ import { auth } from '../FirebaseConfig';
 import { getAuth } from 'firebase/auth';
 import {collection, getDocs, setDoc, doc} from 'firebase/firestore';
 import { db } from '../FirebaseConfig';
+import CardItem from '../componentes/CardItem.js';
 
 
 export default function Lanches({navigation}) {
@@ -43,12 +44,7 @@ export default function Lanches({navigation}) {
             data={data}
             keyExtractor={item => item.id}
             renderItem={({ item }) => (
-              <View>
-                <Image source={{ uri: item.imagem }} style={{ width: 220, height: 220 }}/>
-                <Text>Título: {item.titulo}</Text>
-                <Text>Descrição: {item.descricao}</Text>
-                <Text>Preço: {item.preco}</Text>
-              </View>
+             <CardItem titulo={item.titulo} descricao={item.descricao} preco={item.preco} uri={item.imagem}/>
             )}
           />
         </SafeAreaView>
