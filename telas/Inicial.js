@@ -3,8 +3,8 @@ import React, { useEffect } from 'react';
 import Label from '../componentes/Label';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { auth } from '../FirebaseConfig';
-import {getAuth} from 'firebase/auth';
-import {useAuth} from'../context/auth/useAuth';
+import { getAuth } from 'firebase/auth';
+import { useAuth } from '../context/auth/useAuth';
 import Header from '../componentes/Header'
 import Sair from '../componentes/Sair';
 import Card from '../componentes/Card.js';
@@ -14,18 +14,18 @@ import uniaoImg from '../assets/uniao.jpeg';
 import celebracaoImg from '../assets/celebracao.jpeg';
 
 export default function Inicial({ navigation }) {
-  const {user, setUser} = useAuth();
+  const { user, setUser } = useAuth();
 
-  getAuth().onAuthStateChanged((user) =>{
-    if(!user)
+  getAuth().onAuthStateChanged((user) => {
+    if (!user)
       navigation.reset({
-        index:0,
-        routes:[{name: 'Login'}]
-    })
+        index: 0,
+        routes: [{ name: 'Login' }]
+      })
   });
 
   const handleLogout = async () => {
-      auth.signOut()
+    auth.signOut()
   };
 
   return (
@@ -48,8 +48,8 @@ export default function Inicial({ navigation }) {
           shadowRadius: 15,
           elevation: 12
         }}>
-          <Header/>
-          <Sair handleLogout={handleLogout}/>
+          <Header />
+          <Sair handleLogout={handleLogout} />
         </View>
 
         <View style={{
@@ -71,11 +71,11 @@ export default function Inicial({ navigation }) {
             marginBottom: 20,
             textShadow: '2px 2px 4px rgba(139, 92, 246, 0.3)'
           }}>
-            🍔 Nossos Deliciosos Lanches 🍔
+            🍔 Informações sobre os nossos lanches 🍔
           </Text>
-          
+
           <View style={{
-            flexDirection: 'row',
+            // flexDirection: 'row', // removido para empilhar em coluna
             justifyContent: 'space-between',
             borderRadius: 20,
             padding: 15,
@@ -94,9 +94,10 @@ export default function Inicial({ navigation }) {
               shadowRadius: 10,
               elevation: 8,
               borderWidth: 1,
-              borderColor: 'rgba(255, 107, 157, 0.2)'
+              borderColor: 'rgba(255, 107, 157, 0.2)',
+              marginBottom: 20
             }}>
-              <Card caminho={alface2Img} altura={340} largura={520} descricao='teste'/>
+              <Card caminho={alface2Img} altura={340} largura={520} descricao='Alfaces 100% naturais e livres de agrotóxicos, garantindo frescor e saúde no seu lanche!' />
             </View>
             <View style={{
               backgroundColor: '#fff',
@@ -108,16 +109,16 @@ export default function Inicial({ navigation }) {
               shadowRadius: 10,
               elevation: 8,
               borderWidth: 1,
-              borderColor: 'rgba(196, 69, 105, 0.2)'
+              borderColor: 'rgba(196, 69, 105, 0.2)',
             }}>
-              <Card caminho={gadoImg} altura={340} largura={520} descricao='teste'/>
+              <Card caminho={gadoImg} altura={340} largura={520} descricao='Bois criados sem hormônios e antibióticos, para uma carne saudável e saborosa.' />
             </View>
           </View>
 
           <View style={{
-            flexDirection:'row', 
-            justifyContent:'space-between', 
-            borderRadius: 20, 
+            // flexDirection: 'row', // removido para empilhar em coluna
+            justifyContent: 'space-between',
+            borderRadius: 20,
             padding: 15,
             backgroundColor: 'rgba(139, 92, 246, 0.1)',
             borderWidth: 2,
@@ -133,9 +134,10 @@ export default function Inicial({ navigation }) {
               shadowRadius: 10,
               elevation: 8,
               borderWidth: 1,
-              borderColor: 'rgba(139, 92, 246, 0.2)'
+              borderColor: 'rgba(139, 92, 246, 0.2)',
+              marginBottom: 20
             }}>
-              <Card caminho={uniaoImg} altura={340} largura={520} descricao='teste'/>
+              <Card caminho={uniaoImg} altura={340} largura={520} descricao='Parte dos lucros é dedicada a apoiar quem mais precisa, com solidariedade e carinho.' />
             </View>
             <View style={{
               backgroundColor: '#fff',
@@ -149,7 +151,7 @@ export default function Inicial({ navigation }) {
               borderWidth: 1,
               borderColor: 'rgba(255, 107, 157, 0.2)'
             }}>
-              <Card caminho={celebracaoImg} altura={340} largura={520} descricao='teste'/>
+              <Card caminho={celebracaoImg} altura={340} largura={520} descricao='Celebrar juntos momentos especiais torna a vida mais feliz e cheia de significado.' />
             </View>
           </View>
         </View>
@@ -173,10 +175,10 @@ export default function Inicial({ navigation }) {
             fontWeight: '600',
             fontStyle: 'italic'
           }}>
-            ✨ Sabores únicos que despertam seus sentidos! ✨
+            ✨ Aqui comer é celebrar! ✨
           </Text>
         </View>
-       </ScrollView>
+      </ScrollView>
     </SafeAreaView>
   );
 }

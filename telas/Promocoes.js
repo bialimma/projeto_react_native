@@ -92,45 +92,6 @@ export default function Promocoes({navigation}) {
         shadowRadius: 15,
         elevation: 10
       }}>
-        {data.length === 0 ? (
-          <View style={{
-            flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
-            backgroundColor: 'rgba(255, 107, 157, 0.05)',
-            margin: 20,
-            borderRadius: 20,
-            padding: 30,
-            borderWidth: 2,
-            borderColor: 'rgba(255, 107, 157, 0.2)',
-            borderStyle: 'dashed'
-          }}>
-            <Text style={{
-              fontSize: 24,
-              color: '#8b5cf6',
-              marginBottom: 10
-            }}>
-              🔄
-            </Text>
-            <Text style={{
-              fontSize: 18,
-              color: '#c44569',
-              textAlign: 'center',
-              fontWeight: '600'
-            }}>
-              Carregando nossos deliciosos lanches...
-            </Text>
-            <Text style={{
-              fontSize: 14,
-              color: '#8b5cf6',
-              textAlign: 'center',
-              marginTop: 5,
-              fontStyle: 'italic'
-            }}>
-              Aguarde um momento!
-            </Text>
-          </View>
-        ) : (
           <FlatList
             data={data}
             keyExtractor={item => item.id}
@@ -171,38 +132,7 @@ export default function Promocoes({navigation}) {
                 marginVertical: 5
               }} />
             )}
-            ListFooterComponent={() => (
-              <View style={{
-                backgroundColor: 'rgba(196, 69, 105, 0.08)',
-                marginHorizontal: 15,
-                marginTop: 15,
-                borderRadius: 15,
-                padding: 20,
-                borderWidth: 1,
-                borderColor: 'rgba(196, 69, 105, 0.2)',
-                alignItems: 'center'
-              }}>
-                <Text style={{
-                  fontSize: 18,
-                  color: '#8b5cf6',
-                  fontWeight: 'bold',
-                  textAlign: 'center',
-                  marginBottom: 5
-                }}>
-                  🎉 Que tal experimentar?
-                </Text>
-                <Text style={{
-                  fontSize: 14,
-                  color: '#c44569',
-                  textAlign: 'center',
-                  fontStyle: 'italic'
-                }}>
-                  Todos os nossos lanches são preparados com muito carinho!
-                </Text>
-              </View>
-            )}
           />
-        )}
       </View>
     </SafeAreaView>
   );

@@ -1,7 +1,6 @@
 import { StyleSheet, View, Pressable, FlatList, Image, Text, TouchableHighlight} from 'react-native'; 
 import Botao from './Botao'; 
-import Label from './Label'; 
-import Estilos from '../estilos/Estilos'; 
+import Label from './Label';  
 import {useAuth} from'../context/auth/useAuth';   
 
 export default function Header(){    
@@ -14,70 +13,27 @@ export default function Header(){
             paddingHorizontal: 15,
             backgroundColor: 'transparent'
         }}>
-            {/* Logo Container with Modern Styling */}
             <View style={{
-                backgroundColor: 'rgba(255, 255, 255, 0.95)',
-                borderRadius: 25,
-                padding: 20,
-                marginBottom: 15,
-                shadowColor: '#8b5cf6',
-                shadowOffset: { width: 0, height: 10 },
-                shadowOpacity: 0.3,
-                shadowRadius: 20,
-                elevation: 15,
-                borderWidth: 3,
-                borderColor: 'rgba(255, 107, 157, 0.2)',
-                alignItems: 'center'
+                backgroundColor: '#cb6ce6',
+                borderRadius: 20,
+                padding: 15,
+                margin: 10,
+                width: 1400,
+                alignItems: 'center',
+                justifyContent: 'center'
             }}>
-                <View style={{
-                    backgroundColor: 'rgba(139, 92, 246, 0.1)',
-                    borderRadius: 20,
-                    padding: 15,
-                    borderWidth: 2,
-                    borderColor: 'rgba(139, 92, 246, 0.3)'
-                }}>
-                    <Image 
-                        source={require('../assets/logo.png')} 
-                        style={{ 
-                            width: 120, 
-                            height: 120,
-                            borderRadius: 15
-                        }}
-                        resizeMode="contain"
-                    />
-                </View>
-                
-                {/* Decorative Elements */}
-                <View style={{
-                    flexDirection: 'row',
-                    marginTop: 10,
-                    alignItems: 'center'
-                }}>
-                    <View style={{
-                        width: 30,
-                        height: 3,
-                        backgroundColor: '#ff6b9d',
-                        borderRadius: 2,
-                        marginHorizontal: 5
-                    }} />
-                    <Text style={{
-                        fontSize: 16,
-                        color: '#8b5cf6',
-                        fontWeight: 'bold'
-                    }}>
-                        🍔
-                    </Text>
-                    <View style={{
-                        width: 30,
-                        height: 3,
-                        backgroundColor: '#c44569',
-                        borderRadius: 2,
-                        marginHorizontal: 5
-                    }} />
-                </View>
+                <Image 
+                    source={require('../assets/logo.png')} 
+                    style={{ 
+                        width: 220, 
+                        height: 220,
+                        borderRadius: 15
+                    }}
+                    resizeMode="contain"
+                />
             </View>
             
-            {/* User Info Container */}
+            {/* Informações do usuário */}
             <View style={{
                 backgroundColor: 'rgba(255, 107, 157, 0.1)',
                 borderRadius: 15,
@@ -113,7 +69,7 @@ export default function Header(){
                     </Text>
                 </View>
                 
-                {/* Welcome Message */}
+                {/* Mensagem de boas vindas */}
                 <Text style={{
                     fontSize: 12,
                     color: '#8b5cf6',
@@ -121,7 +77,7 @@ export default function Header(){
                     fontWeight: '500',
                     textAlign: 'center'
                 }}>
-                    ✨ Bem-vindo ao nosso sabor! ✨
+                    Bem vindx!
                 </Text>
             </View>
         </View>

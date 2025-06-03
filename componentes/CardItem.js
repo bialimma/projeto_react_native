@@ -1,7 +1,6 @@
 import { StyleSheet, View, Pressable, FlatList, Image, Text, TouchableHighlight} from 'react-native';
 import Botao from './Botao';
 import Label from './Label';
-import Estilos from '../estilos/Estilos';
 
 export default function CardItem({titulo, descricao, preco, uri}) {
   return (
@@ -19,7 +18,6 @@ export default function CardItem({titulo, descricao, preco, uri}) {
         overflow: 'hidden',
         marginVertical: 5
       }} 
-      onPress={() => alert("Card")} 
       underlayColor="rgba(255, 107, 157, 0.1)"
       activeOpacity={0.8}
     >
@@ -127,28 +125,6 @@ export default function CardItem({titulo, descricao, preco, uri}) {
               textAlign: 'center'
             }}>
               💰 Preço: R$ {preco}
-            </Text>
-          </View>
-
-          {/* Call to Action */}
-          <View style={{
-            marginTop: 15,
-            backgroundColor: 'rgba(255, 107, 157, 0.12)',
-            borderRadius: 8,
-            paddingVertical: 10,
-            paddingHorizontal: 15,
-            borderWidth: 1,
-            borderColor: 'rgba(255, 107, 157, 0.25)',
-            alignItems: 'center'
-          }}>
-            <Text style={{
-              fontSize: 12,
-              color: '#8b5cf6',
-              fontWeight: '600',
-              textAlign: 'center',
-              fontStyle: 'italic'
-            }}>
-              ✨ Toque para mais informações ✨
             </Text>
           </View>
         </View>

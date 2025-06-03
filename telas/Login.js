@@ -67,7 +67,7 @@ export default function Login({ navigation }) {
           backgroundColor: 'transparent'
         }}
       >
-        {/* Header Section */}
+        {/* Header */}
         <View style={{
           backgroundColor: 'rgba(255, 255, 255, 0.95)',
           borderRadius: 25,
@@ -97,11 +97,11 @@ export default function Login({ navigation }) {
             fontWeight: '600',
             fontStyle: 'italic'
           }}>
-            ✨ Entre e desfrute dos melhores sabores ✨
+            ✨ Aqui comer é celebrar! ✨
           </Text>
         </View>
 
-        {/* Login Form */}
+        {/* Formulário de login */}
         <View style={{
           backgroundColor: 'rgba(255, 255, 255, 0.9)',
           borderRadius: 25,
@@ -113,7 +113,7 @@ export default function Login({ navigation }) {
           elevation: 12
         }}>
           
-          {/* Email Input */}
+          {/* Input e-mail */}
           <View style={{
             marginBottom: 20
           }}>
@@ -147,7 +147,7 @@ export default function Login({ navigation }) {
             />
           </View>
 
-          {/* Password Input */}
+          {/* Input de senha */}
           <View style={{
             marginBottom: 30
           }}>
@@ -182,7 +182,7 @@ export default function Login({ navigation }) {
             />
           </View>
 
-          {/* Login Button */}
+          {/* Botão de login */}
           <Pressable 
             onPress={handleLogin}
             style={{
@@ -206,11 +206,11 @@ export default function Login({ navigation }) {
               textAlign: 'center',
               textShadow: '1px 1px 2px rgba(0, 0, 0, 0.3)'
             }}>
-              🚀 ENTRAR
+               ENTRAR
             </Text>
           </Pressable>
 
-          {/* Register Button */}
+          {/* Botão de cadastro */}
           <Pressable 
             onPress={handleCreateAccount}
             style={{
@@ -233,7 +233,7 @@ export default function Login({ navigation }) {
               textAlign: 'center',
               textShadow: '1px 1px 2px rgba(0, 0, 0, 0.3)'
             }}>
-              ✨ CRIAR CONTA
+              CRIAR CONTA
             </Text>
           </Pressable>
         </View>
@@ -257,7 +257,7 @@ export default function Login({ navigation }) {
             fontWeight: '500',
             fontStyle: 'italic'
           }}>
-            🍟 Sua jornada gastronômica começa aqui! 🍟
+            🍟 Desenvolvido por: Bruno e Bianca 🍟
           </Text>
         </View>
       </ScrollView>

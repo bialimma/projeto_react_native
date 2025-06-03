@@ -1,7 +1,6 @@
 import { StyleSheet, View, Pressable, FlatList, Image, Text, TouchableHighlight} from 'react-native';
 import Botao from './Botao';
 import Label from './Label';
-import Estilos from '../estilos/Estilos';
 
 export default function Card(props) {
   return (
@@ -22,9 +21,6 @@ export default function Card(props) {
        }} 
        underlayColor="rgba(255, 107, 157, 0.1)"
        activeOpacity={0.8}
-       onPressIn={() => {
-         // Efeito de pressão visual pode ser adicionado aqui
-       }}
      >
       <View style={{
         padding: 15,
@@ -72,26 +68,7 @@ export default function Card(props) {
             textAlign: 'center',
             textShadow: '1px 1px 2px rgba(139, 92, 246, 0.1)'
           }}>
-            🍴 Descrição: {props.descricao}
-          </Text>
-        </View>
-
-        <View style={{
-          marginTop: 10,
-          backgroundColor: 'rgba(255, 107, 157, 0.1)',
-          borderRadius: 8,
-          paddingVertical: 8,
-          paddingHorizontal: 15,
-          borderWidth: 1,
-          borderColor: 'rgba(255, 107, 157, 0.2)'
-        }}>
-          <Text style={{
-            fontSize: 12,
-            color: '#c44569',
-            fontWeight: '500',
-            textAlign: 'center'
-          }}>
-            ✨ Toque para mais detalhes ✨
+            {props.descricao}
           </Text>
         </View>
       </View>

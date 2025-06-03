@@ -1,19 +1,19 @@
-import { StyleSheet, Text, View, TextInput, Button, FlatList, TouchableOpacity, Modal, ScrollView,Image } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, FlatList, TouchableOpacity, Modal, ScrollView, Image } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { db } from '../FirebaseConfig';
-import { collection, addDoc, getDocs} from 'firebase/firestore';
+import { collection, addDoc, getDocs } from 'firebase/firestore';
 import { DrawerItemList } from '@react-navigation/drawer';
 
 export default function Pedidos({ navigation }) {
-  const [itensCardapio,setItensCardapio] = useState([]);
+  const [itensCardapio, setItensCardapio] = useState([]);
   const [endereco, setEndereco] = useState('');
   const [itensPedido, setItensPedido] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
-  
+
   const carregarCardapio = async () => {
     try {
-      const colecoes = ['Lanches', 'Combos', 'Bebidas', 'Doces','Promoções'];
+      const colecoes = ['Lanches', 'Combos', 'Bebidas', 'Doces', 'Promoções'];
       let itensTotais = [];
 
       for (const nomeColecao of colecoes) {
@@ -21,7 +21,7 @@ export default function Pedidos({ navigation }) {
         const itens = snapshot.docs.map(doc => ({
           id: doc.id,
           titulo: doc.titulo,
-          preco : doc.preco,
+          preco: doc.preco,
           imagem: doc.imagem,
           ...doc.data()
         }));
@@ -35,15 +35,15 @@ export default function Pedidos({ navigation }) {
   };
 
   const adicionarItemAoPedido = (item) => {
-    setItensPedido([...itensPedido,item]);
-  }
+    setItensPedido([...itensPedido, item]);
+  };
 
   const removerItem = (index) => {
     const novaLista = [...itensPedido];
     novaLista.splice(index, 1);
     setItensPedido(novaLista);
   };
-   
+
   const adicionarPedido = async () => {
     if (!endereco || itensPedido.length === 0) return;
 
@@ -55,10 +55,14 @@ export default function Pedidos({ navigation }) {
       setEndereco('');
       setItensPedido([]);
       setModalVisible(false);
-      alert('Pedido salvo com sucesso!')
+      alert('Pedido salvo com sucesso!');
     } catch (error) {
       console.error("Erro ao adicionar pedido: ", error);
     }
+  };
+
+  const calcularTotal = () => {
+    return itensPedido.reduce((total, item) => total + parseFloat(item.preco), 0).toFixed(2);
   };
 
   useEffect(() => {
@@ -116,20 +120,18 @@ export default function Pedidos({ navigation }) {
             fontWeight: 'bold',
             textAlign: 'center'
           }}>
-            ✨ Novo Pedido ✨
+            Novo Pedido
           </Text>
         </TouchableOpacity>
       </View>
 
-     <Modal visible={modalVisible} animationType="slide">
-       <SafeAreaView style={{
-         flex: 1,
-         backgroundColor: '#fff',
-         background: 'linear-gradient(135deg, #ff6b9d 0%, #c44569 50%, #8b5cf6 100%)'
-       }}>
-         <ScrollView style={{
-           backgroundColor: 'transparent'
-         }}>
+      <Modal visible={modalVisible} animationType="slide">
+        <SafeAreaView style={{
+          flex: 1,
+          backgroundColor: '#fff',
+          background: 'linear-gradient(135deg, #ff6b9d 0%, #c44569 50%, #8b5cf6 100%)'
+        }}>
+          <ScrollView style={{ backgroundColor: 'transparent' }}>
             <View style={{
               backgroundColor: 'rgba(255, 255, 255, 0.95)',
               margin: 15,
@@ -151,7 +153,7 @@ export default function Pedidos({ navigation }) {
               }}>
                 🍔 Novo Pedido
               </Text>
-              
+
               <View style={{
                 backgroundColor: 'rgba(255, 107, 157, 0.1)',
                 borderRadius: 15,
@@ -189,7 +191,7 @@ export default function Pedidos({ navigation }) {
                   placeholderTextColor="rgba(139, 92, 246, 0.5)"
                 />
               </View>
-                           
+
               <View style={{
                 backgroundColor: 'rgba(139, 92, 246, 0.1)',
                 borderRadius: 15,
@@ -272,88 +274,86 @@ export default function Pedidos({ navigation }) {
                 borderWidth: 2,
                 borderColor: 'rgba(196, 69, 105, 0.3)'
               }}>
-               <Text style={{
-                 fontSize: 18,
-                 fontWeight: 'bold',
-                 color: '#c44569',
-                 marginBottom: 15,
-                 textAlign: 'center'
-               }}>
-                 🛍️ Itens Selecionados:
-               </Text>
-               {itensPedido.length === 0 ? (
-                 <Text style={{
-                   fontSize: 14,
-                   color: '#8b5cf6',
-                   textAlign: 'center',
-                   fontStyle: 'italic'
-                 }}>
-                   Nenhum item selecionado ainda...
-                 </Text>
-               ) : (
-                 <FlatList
-                   data={itensPedido}
-                   keyExtractor={(_, index) => index.toString()}
-                   renderItem={({ item, index }) => (
-                     <View style={{
-                       backgroundColor: '#fff',
-                       borderRadius: 12,
-                       padding: 15,
-                       marginBottom: 10,
-                       flexDirection: 'row',
-                       justifyContent: 'space-between',
-                       alignItems: 'center',
-                       shadowColor: '#c44569',
-                       shadowOffset: { width: 0, height: 3 },
-                       shadowOpacity: 0.15,
-                       shadowRadius: 6,
-                       elevation: 5,
-                       borderWidth: 1,
-                       borderColor: 'rgba(196, 69, 105, 0.2)'
-                     }}>
-                       <View style={{ flex: 1 }}>
-                         <Text style={{
-                           fontSize: 16,
-                           fontWeight: '600',
-                           color: '#8b5cf6',
-                           marginBottom: 2
-                         }}>
-                           {item.nome}
-                         </Text>
-                         <Text style={{
-                           fontSize: 14,
-                           fontWeight: 'bold',
-                           color: '#c44569'
-                         }}>
-                           R$ {item.preco}
-                         </Text>
-                       </View>
-                       <TouchableOpacity 
-                         style={{
-                           backgroundColor: '#ff6b9d',
-                           paddingVertical: 8,
-                           paddingHorizontal: 15,
-                           borderRadius: 8,
-                           shadowColor: '#ff6b9d',
-                           shadowOffset: { width: 0, height: 2 },
-                           shadowOpacity: 0.3,
-                           shadowRadius: 4,
-                           elevation: 4
-                         }}
-                         onPress={() => removerItem(index)}
-                       >
-                         <Text style={{
-                           color: '#fff',
-                           fontSize: 12,
-                           fontWeight: 'bold'
-                         }}>
-                           ❌ Remover
-                         </Text>
-                       </TouchableOpacity>
-                     </View>
-                   )}
-                 />
-               )}
+                <Text style={{
+                  fontSize: 18,
+                  fontWeight: 'bold',
+                  color: '#c44569',
+                  marginBottom: 15,
+                  textAlign: 'center'
+                }}>
+                  Itens Selecionados:
+                </Text>
+                <FlatList
+                  data={itensPedido}
+                  keyExtractor={(_, index) => index.toString()}
+                  renderItem={({ item, index }) => (
+                    <View style={{
+                      backgroundColor: '#fff',
+                      borderRadius: 12,
+                      padding: 15,
+                      marginBottom: 10,
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                      shadowColor: '#c44569',
+                      shadowOffset: { width: 0, height: 3 },
+                      shadowOpacity: 0.15,
+                      shadowRadius: 6,
+                      elevation: 5,
+                      borderWidth: 1,
+                      borderColor: 'rgba(196, 69, 105, 0.2)'
+                    }}>
+                      <View style={{ flex: 1 }}>
+                        <Text style={{
+                          fontSize: 16,
+                          fontWeight: '600',
+                          color: '#8b5cf6',
+                          marginBottom: 2
+                        }}>
+                          {item.titulo}
+                        </Text>
+                        <Text style={{
+                          fontSize: 14,
+                          fontWeight: 'bold',
+                          color: '#c44569'
+                        }}>
+                          R$ {item.preco}
+                        </Text>
+                      </View>
+                      <TouchableOpacity 
+                        style={{
+                          backgroundColor: '#ff6b9d',
+                          paddingVertical: 8,
+                          paddingHorizontal: 15,
+                          borderRadius: 8,
+                          shadowColor: '#ff6b9d',
+                          shadowOffset: { width: 0, height: 2 },
+                          shadowOpacity: 0.3,
+                          shadowRadius: 4,
+                          elevation: 4
+                        }}
+                        onPress={() => removerItem(index)}
+                      >
+                        <Text style={{
+                          color: '#fff',
+                          fontSize: 12,
+                          fontWeight: 'bold'
+                        }}>
+                          Remover
+                        </Text>
+                      </TouchableOpacity>
+                    </View>
+                  )}
+                />
+                <Text style={{
+                  fontSize: 18,
+                  fontWeight: 'bold',
+                  color: '#8b5cf6',
+                  textAlign: 'right',
+                  marginTop: 10
+                }}>
+                  Total: R$ {calcularTotal()}
+                </Text>
               </View>
 
               <View style={{
@@ -414,8 +414,8 @@ export default function Pedidos({ navigation }) {
                 </TouchableOpacity>
               </View>
             </View>
-        </ScrollView>
-       </SafeAreaView>
+          </ScrollView>
+        </SafeAreaView>
       </Modal>
     </SafeAreaView>
   );
