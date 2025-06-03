@@ -8,8 +8,10 @@ import {useAuth} from'../context/auth/useAuth';
 import Header from '../componentes/Header'
 import Sair from '../componentes/Sair';
 import Card from '../componentes/Card.js';
-import alfaceImg from '../assets/alface.png';
-import gadoImg from '../assets/gado.png';
+import alface2Img from '../assets/alface2.jpeg';
+import gadoImg from '../assets/gado.jpeg';
+import uniaoImg from '../assets/uniao.jpeg';
+import celebracaoImg from '../assets/celebracao.jpeg';
 
 
 
@@ -29,16 +31,25 @@ export default function Inicial({ navigation }) {
   };
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{backgroundColor: 'lightpink',flex: 1}}>
       <ScrollView>
-        <Header/>
-        <View style={{flexDirection:'row'}}>
-          <Card caminho={alfaceImg} altura={420} largura={580} descricao='teste'/>
+        <View>
+          <Header/>
+          <Sair handleLogout={handleLogout}/>
+        </View>
+        <View style={{  flexDirection: 'row',
+        justifyContent: 'space-between',
+        borderRadius: 20,
+        padding: 10}}>
+          <Card caminho={alface2Img} altura={340} largura={520} descricao='teste'/>
           <Card caminho={gadoImg} altura={340} largura={520} descricao='teste'/>
         </View>
-        <Sair handleLogout={handleLogout}/>
-        <Text>{user?.email}</Text>
-        <Label textoLabel="AAAAAAAAAAAAAAAAA" />
+
+        <View style={{flexDirection:'row', justifyContent:'space-between', borderRadius: 20, padding: 10}}>
+          <Card caminho={uniaoImg} altura={340} largura={520} descricao='teste'/>
+          <Card caminho={celebracaoImg} altura={340} largura={520} descricao='teste'/>
+        </View>
+
       </ScrollView>
     </SafeAreaView>
   ); 

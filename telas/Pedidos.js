@@ -69,7 +69,7 @@ export default function Pedidos({ navigation }) {
   }, []);
 
   return (
-    <SafeAreaView style={{ backgroundColor: 'green', flex: 1 }}>
+    <SafeAreaView style={{ flex: 1 }}>
     <Button title="Novo Pedido" onPress={()=> setModalVisible(true)}/>
      <Modal visible={modalVisible} animationType="slide"> 
         <ScrollView>
