@@ -75,7 +75,6 @@ export default function Inicial({ navigation }) {
           </Text>
 
           <View style={{
-            // flexDirection: 'row', // removido para empilhar em coluna
             justifyContent: 'space-between',
             borderRadius: 20,
             padding: 15,
@@ -116,7 +115,6 @@ export default function Inicial({ navigation }) {
           </View>
 
           <View style={{
-            // flexDirection: 'row', // removido para empilhar em coluna
             justifyContent: 'space-between',
             borderRadius: 20,
             padding: 15,

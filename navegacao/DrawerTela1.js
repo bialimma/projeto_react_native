@@ -16,6 +16,3 @@ export default function DrawerTela1() {
     </Drawer.Navigator>
   );
 }
-
-const styles = StyleSheet.create({
-})

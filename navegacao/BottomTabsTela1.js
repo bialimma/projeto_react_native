@@ -42,6 +42,3 @@ export default function BottomTabsTela1() {
     </Tab.Navigator>
   );
 }
-
-const styles = StyleSheet.create({
-});
